@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// Initial array of movies
+	// Initial array 
 	var sports = ['basketball', 'football', 'soccer', 'fishing', 'skiing', 'baseball'];
 
 	//variables
@@ -29,7 +29,7 @@ $(document).ready(function() {
 			// Appending the image
 			sportDiv.append(image);
 
-			// Putting the entire movie above the previous movies
+			// prepending images
 			$('#sport-view').prepend(sportDiv);
 		});
 	}
