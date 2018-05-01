@@ -5,24 +5,27 @@ $(document).ready(function() {
 	//variables
 
 	function showSports() {
+
+		console.log("showSports");
 		var sport = $(this).attr('data-name');
 		// query Giphy API
 		var queryURL =
-			'https://api.giphy.com/v1/gifs/search?q=' + sports + 'api_key=k9yc5izjLNBifhmFRkfxruXbze1XWJpQ&limit=10';
+			'https://api.giphy.com/v1/gifs/search?q=' + sports + '&api_key=k9yc5izjLNBifhmFRkfxruXbze1XWJpQ&limit=10';
 
 		$.ajax({
 			url: queryURL,
 			method: 'GET',
 		}).then(function(response) {
-            console.log(response);
+			console.log(response);
+            console.log(response.data.length);
             
-            for ( var i = 0; i <response.length; i++ )
-
+            for ( var i = 0; i <response.data.length; i++ ) {
+			console.log("for loop running")
 			var sportDiv = $("<div class='sport'>");
 
 			// Retrieving the URL for the image
-			var imgURL = response[i].url;
-
+			var imgURL = response.data[i].images.fixed_height.url;
+console.log(imgURL);
 			// Creating an element to hold the image
 			var image = $('<img>').attr('src', imgURL);
 
@@ -30,7 +33,8 @@ $(document).ready(function() {
 			sportDiv.append(image);
 
 			// prepending images
-			$('#sport-view').prepend(sportDiv);
+			$('#sports-view').prepend(sportDiv);
+			}
 		});
 	}
 
